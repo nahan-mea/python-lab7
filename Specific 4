@@ -1,14 +1,17 @@
 import csv
 
 # Reading specific columns of a CSV file
-def read_specific_columns(file_name, columns):
-    with open(file_name, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            selected_data = {col: row[col] for col in columns if col in row}
-            print(selected_data)
+def read_specific_columns():
+    csv_file = input("Enter the CSV file name: ")
+    columns = input("Enter the column names to read (comma-separated): ").split(",")
+    try:
+        with open(csv_file, 'r') as file:
+            reader = csv.DictReader(file)
+            print("Selected column data:")
+            for row in reader:
+                selected_data = {col: row[col] for col in columns if col in row}
+                print(selected_data)
+    except FileNotFoundError:
+        print("File not found. Please check the file name.")
 
-# Example usage
-csv_file = 'example.csv'
-columns_to_read = ['Column1', 'Column2']
-read_specific_columns(csv_file, columns_to_read)
+read_specific_columns()
