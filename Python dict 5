@@ -1,23 +1,31 @@
 import csv
 
-# Writing a dictionary to a CSV file
-def write_and_read_csv(dict_data, file_name):
-    # Writing the dictionary to a CSV file
-    with open(file_name, 'w', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=dict_data[0].keys())
-        writer.writeheader()
-        writer.writerows(dict_data)
-    
-    # Reading the CSV file and displaying its content
-    with open(file_name, 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row)
+# Writing a dictionary to a CSV file and then reading it
+def write_and_read_csv():
+    file_name = input("Enter the CSV file name to create: ")
+    num_rows = int(input("Enter the number of rows for the dictionary: "))
+    dict_data = []
 
-# Example usage
-data = [
-    {'Name': 'Alice', 'Age': 25, 'City': 'New York'},
-    {'Name': 'Bob', 'Age': 30, 'City': 'Los Angeles'}
-]
-csv_file = 'output.csv'
-write_and_read_csv(data, csv_file)
+    # Taking dictionary input
+    for i in range(num_rows):
+        print(f"Enter data for row {i + 1}:")
+        row = {}
+        while True:
+            key = input("Enter key (or type 'done' to finish the row): ")
+            if key.lower() == 'done':
+                break
+            value = input(f"Enter value for '{key}': ")
+            row[key] = value
+        dict_data.append(row)
+
+    # Writing the dictionary to a CSV file
+    try:
+        with open(file_name, 'w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=dict_data[0].keys())
+            writer.writeheader()
+            writer.writerows(dict_data)
+        print(f"Data written to {file_name}.")
+
+        # Reading and displaying the CSV content
+        print("\nReading back the CSV content:")
+        with open(file_name, 'r')
