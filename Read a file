@@ -1,0 +1,10 @@
+# Reading a file line by line and storing it into a list
+def read_file_to_list(file_name):
+    with open(file_name, 'r') as file:
+        lines = file.readlines()
+    return [line.strip() for line in lines]
+
+# Example usage
+file_name = 'example.txt'
+lines = read_file_to_list(file_name)
+print(lines)
