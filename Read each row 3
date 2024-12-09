@@ -1,0 +1,12 @@
+import csv
+
+# Reading each row from a CSV and printing a list of strings
+def read_csv_as_list(file_name):
+    with open(file_name, 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            print(row)
+
+# Example usage
+csv_file = 'example.csv'
+read_csv_as_list(csv_file)
