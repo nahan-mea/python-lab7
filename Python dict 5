@@ -1,0 +1,23 @@
+import csv
+
+# Writing a dictionary to a CSV file
+def write_and_read_csv(dict_data, file_name):
+    # Writing the dictionary to a CSV file
+    with open(file_name, 'w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=dict_data[0].keys())
+        writer.writeheader()
+        writer.writerows(dict_data)
+    
+    # Reading the CSV file and displaying its content
+    with open(file_name, 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            print(row)
+
+# Example usage
+data = [
+    {'Name': 'Alice', 'Age': 25, 'City': 'New York'},
+    {'Name': 'Bob', 'Age': 30, 'City': 'Los Angeles'}
+]
+csv_file = 'output.csv'
+write_and_read_csv(data, csv_file)
