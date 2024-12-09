@@ -1,12 +1,15 @@
 import csv
 
 # Reading each row from a CSV and printing a list of strings
-def read_csv_as_list(file_name):
-    with open(file_name, 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            print(row)
+def read_csv_as_list():
+    csv_file = input("Enter the CSV file name: ")
+    try:
+        with open(csv_file, 'r') as file:
+            reader = csv.reader(file)
+            print("Rows in the CSV file:")
+            for row in reader:
+                print(row)
+    except FileNotFoundError:
+        print("File not found. Please check the file name.")
 
-# Example usage
-csv_file = 'example.csv'
-read_csv_as_list(csv_file)
+read_csv_as_list()
