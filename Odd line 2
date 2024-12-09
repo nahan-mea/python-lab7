@@ -1,13 +1,15 @@
 # Copy odd lines from one file to another
-def copy_odd_lines(source_file, target_file):
-    with open(source_file, 'r') as src, open(target_file, 'w') as tgt:
-        lines = src.readlines()
-        for i in range(len(lines)):
-            if i % 2 == 0:  # 0-based index, so odd lines are even indices
-                tgt.write(lines[i])
+def copy_odd_lines():
+    source_file = input("Enter the source file name: ")
+    target_file = input("Enter the target file name: ")
+    try:
+        with open(source_file, 'r') as src, open(target_file, 'w') as tgt:
+            lines = src.readlines()
+            for i in range(len(lines)):
+                if i % 2 == 0:  # Odd lines are at even indices
+                    tgt.write(lines[i])
+        print(f"Odd lines from {source_file} have been copied to {target_file}.")
+    except FileNotFoundError:
+        print("File not found. Please check the file name.")
 
-# Example usage
-source_file = 'source.txt'
-target_file = 'target.txt'
-copy_odd_lines(source_file, target_file)
-print(f'Odd lines from {source_file} have been copied to {target_file}.')
+copy_odd_lines()
